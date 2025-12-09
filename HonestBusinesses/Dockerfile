@@ -8,8 +8,7 @@ RUN mkdir /code
 COPY . /code/
 WORKDIR /code
 
-RUN set -e; \
-    /usr/local/bin/python -m pip install --upgrade pip ;\
-    python -m pip install --default-timeout=100 -r /code/requirements/dev.txt ;
+RUN pip install --upgrade pip \
+    && pip install -r requirements.txt
 
 EXPOSE 8000
