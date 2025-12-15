@@ -43,6 +43,25 @@ services:
     env_file:
       - .env
 
+  nginx:
+    image: nginx:alpine
+    container_name: your-quality-programmer-nginx
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./certs:/etc/ssl/certs/dev:ro
+    command:
+      - mkdir -p certs
+      - openssl req -x509 -nodes -days 365 \
+      - newkey rsa:2048 \
+      - keyout certs/dev.key \
+      - out certs/dev.crt \
+      - subj "/C=US/ST=Dev/L=Dev/O=Dev/OU=Dev/CN=localhost"
+
 volumes:
   postgres_data:
 

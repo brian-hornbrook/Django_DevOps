@@ -27,6 +27,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "0").lower() in ("1", "true", "yes")
 
 ALLOWED_HOSTS = ['localhost']
+
+# Tell Django to trust X-Forwarded-Proto from the proxy (nginx)
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 # Application definition
 
 INSTALLED_APPS = [
