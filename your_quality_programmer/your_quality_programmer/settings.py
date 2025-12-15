@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'your_quality_programmer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.{}'.format(
-            os.getenv('DATABASE_ENGINE', 'sqlite3')
+            os.getenv('DATABASE_ENGINE')
         ),
         'NAME': os.getenv('DATABASE_NAME', 'name'),
         'USER': os.getenv('DATABASE_USERNAME', 'username'),
